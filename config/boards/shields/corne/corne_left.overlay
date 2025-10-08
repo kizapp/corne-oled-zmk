@@ -1,0 +1,35 @@
+/*
+ * Custom Corne left overlay with EC11 encoder support
+ */
+
+#include "corne.dtsi"
+
+&kscan0 {
+    col-gpios
+        = <&pro_micro 21 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 20 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 19 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 18 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 15 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 14 GPIO_ACTIVE_HIGH>
+        ;
+};
+
+/ {
+    left_encoder: encoder_left {
+        compatible = "alps,ec11";
+        /* CLK -> pro_micro D8 (P1.04), DT -> pro_micro D9 (P1.06) */
+        a-gpios = <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <80>;
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder>;
+        /* Number of interrupts per full rotation; adjust if needed */
+        triggers-per-rotation = <20>;
+    };
+};
+
+

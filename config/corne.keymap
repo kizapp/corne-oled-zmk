@@ -25,6 +25,9 @@
 &kp LSHFT  &kp Z  &kp X  &kp C     &kp V  &kp B        &kp N    &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
                          &kp LGUI  &mo 1  &kp SPACE    &kp RET  &mo 2  &kp RALT
             >;
+
+            /* Encoder: volume on default layer */
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         lower_layer {
@@ -40,6 +43,9 @@
 &trans   &studio_unlock  &trans        &trans        &trans        &trans          &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp K_PREVIOUS  &kp K_PLAY_PAUSE   &kp K_NEXT
                                        &kp LGUI      &trans        &kp SPACE       &kp RET         &trans          &kp RALT
             >;
+
+            /* Encoder: volume on lower layer */
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         raise_layer {
@@ -55,6 +61,9 @@
 &kp LSHFT  &trans      &trans  &trans    &trans    &trans       &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE  &kp TILDE
                                &kp LGUI  &trans    &kp SPACE    &kp RET    &trans     &kp RALT
             >;
+
+            /* Encoder: volume on raise layer */
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
     };
 };

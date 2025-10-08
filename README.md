@@ -71,3 +71,20 @@ to confirm the structure of the keymap. Take a look at the [default keymap](conf
 
 The Ergomech Corne has a 5 way switch on the right side keyboard. The location of the key presses on the 5 way switch are on the last line of the `bindings` section of each layer.
 As long as the correct number of entries exist on that row, the 5 way switch will work. 
+
+
+# Building
+
+```
+docker run --rm -v $PWD:/workdir -w /workdir zmkfirmware/zmk-build-arm:stable bash -lc \
+    "west init -l config && west update && west zephyr-export && \
+ west build -s zmk/app -b nice_nano_v2 -d build/right -S studio-rpc-usb-uart -- \
+ -DSHIELD=corne_right -DZMK_CONFIG=/workdir/config -DCONFIG_ZMK_STUDIO=y"
+```
+
+```
+docker run --rm -v $PWD:/workdir -w /workdir zmkfirmware/zmk-build-arm:stable bash -lc \
+    "west init -l config && west update && west zephyr-export && \
+ west build -s zmk/app -b nice_nano_v2 -d build/left -S studio-rpc-usb-uart -- \
+ -DSHIELD=corne_left -DZMK_CONFIG=/workdir/config -DCONFIG_ZMK_STUDIO=y"
+```
